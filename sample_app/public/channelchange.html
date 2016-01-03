@@ -7,12 +7,13 @@
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     	<script>
+        var STB_IP = "10.9.107.16:8080";
         var socket = io.connect();
         socket.emit('log', "people");
         socket.on('back_pay1', function(data) {
             setTimeout(function(){
                 console.log("WORKING...");
-                    $.get("http://10.9.107.16:8080/itv/startURL?url=http://52.90.110.119:4005/ticker.html");
+                    $.get("http://"+STB_IP+"/itv/startURL?url=http://52.90.110.119:4005/ticker.html");
             }, 500);
           });
           console.log("here");
