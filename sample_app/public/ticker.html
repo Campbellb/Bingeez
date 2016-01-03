@@ -6,13 +6,19 @@
 html, body {
 height: 100%;
 }
-        
+
 
         #footer {
 height: 100px;
 position: relative;
             width: 100%;
             background-color: rgba(0, 0, 0, 0.6);
+                bottom:0;
+    position:fixed;
+    z-index:150;
+    _position:absolute;
+    _top:expression(eval(document.documentElement.scrollTop+
+        (document.documentElement.clientHeight-this.offsetHeight)));
 }
    	#ticker{
 			font-family: HelveticaLTStd;
@@ -20,20 +26,37 @@ position: relative;
             font-size: 50px; /* Approximation due to font substitution */
             text-align: center;
             position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-    	}     
+            bottom:50px;
+    	}
+
 	</style>
-	
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="cap.js"></script>
 </head>
 <body>
-    <div class="clearfooter"></div>
-
-</div><!—End Container—>
-<div id="footer">		
-    <div><img src="bingeez-logo.png" style="width: 100px; padding-top:30px; padding-left:60px"></div>
-    <div id="ticker" style="padding-bottom: 10px">$1.11</div>
+   <div class="clearfooter"></div>
+<div id="footer">
+    <div><img src="bingeez-logo.png" style="width: 100px; padding-top:30px; padding-left:60px">
+		<div id="ticker" style="padding-bottom: 10px">$<span id="bingeez-earned"></span></div>
+    </div>
 </div>
-    
+	<script>
+		function readCookie(name) {
+		    var nameEQ = name + "=";
+		    var ca = document.cookie.split(';');
+		    for(var i=0;i < ca.length;i++) {
+		        var c = ca[i];
+		        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		    }
+		    return null;
+		}
+
+		var session = readCookie("session");
+		var channel = readCookie("channel");
+		document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+		document.cookie = "channel=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+		startItUp(session, channel)
+	</script>
     </body>
 </html>
