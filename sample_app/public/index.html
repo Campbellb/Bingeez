@@ -80,9 +80,7 @@
                     , eleH = document.getElementById("h")
                		, eleI = document.getElementById("i")
                     , eleI = document.getElementById("j")
-
-
-;
+                  , eleK = document.getElementById("k");
 			//Don't for get to put a BREAK after every case OR it will
 			//Fall through like it does below.
 			switch(code){
@@ -145,6 +143,11 @@
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
                   ff(channel, getRequest);
+               }else if (eleK.className == "buttonlike active"){
+                  var array = [277, 278,282, 283,284];
+                  var channel = array[Math.floor(Math.random()*array.length)];
+                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+                  ff(channel, getRequest);
                };
         break;
         default :
@@ -178,7 +181,10 @@
                	  eleI.className = "buttonlike"
                	  eleJ.className = "buttonlike active"
                }else if (eleJ.className == "buttonlike active"){
-               	  eleJ.className = "buttonlike"
+                  eleJ.className = "buttonlike"
+                  eleK.className = "buttonlike active"
+               }else if (eleK.className == "buttonlike active"){
+               	  eleK.className = "buttonlike"
                	  eleA.className = "buttonlike active"
                };
                ele.style.display = "none";
@@ -225,7 +231,8 @@
 		<div id="g" class="buttonlike">HORROR</div>
         <div id="h" class="buttonlike">INDIE</div>
 		<div id="i" class="buttonlike">ROMANCE</div>
-		<div id="j" class="buttonlike">SCI-FI</div>
+    <div id="j" class="buttonlike">SCI-FI</div>
+		<div id="k" class="buttonlike">EDUCATION</div>
 
 	</div>
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
