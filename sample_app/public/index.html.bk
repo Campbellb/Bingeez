@@ -4,7 +4,7 @@
 	<title>Sample Hackathon App - Directv</title>
 	<style>
 	body{
-
+            
 	}
 
 		.active {
@@ -12,7 +12,7 @@
             width: 375px;
             height: 47px;
 		}
-
+        
 		.container {
             background-color:  rgba(119, 200, 189, 0.8);
 			min-height: 350px;
@@ -29,12 +29,12 @@
             padding-top: 50px;
             padding-bottom: 50px:
 		}
-
+        
 		#money {
 			height:25px;
 			width:25px;
 		}
-
+        
 		.buttonlike{
 			font-family: HelveticaLTStd;
             color: #ffffff;
@@ -50,8 +50,6 @@
             font-size: 30px;
         }
 	</style>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="cap.js"></script>
 	<script type="text/javascript">
 		//If we are a stb, set the resolution
 		if (!!navigator.setResolution) {
@@ -79,10 +77,6 @@
                		document.getElementById("main-title").innerHTML = "NOW PLAYING: Drama";
                }else if (eleC.className == "buttonlike active"){
                	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Romance";
-                }else if (eleD.className == "buttonlike active"){
-               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Documentary";   
-                }else if (eleE.className == "buttonlike active"){
-               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Documentary";   
                };
         break;
         default :
@@ -96,12 +90,6 @@
                		eleC.className = "buttonlike active"
                }else if (eleC.className == "buttonlike active"){
                	  eleC.className = "buttonlike"
-               	  eleD.className = "buttonlike active"
-               }else if (eleD.className == "buttonlike active"){
-               	  eleD.className = "buttonlike"
-               	  eleE.className = "buttonlike active"
-               }else if (eleE.className == "buttonlike active"){
-               	  eleE.className = "buttonlike"
                	  eleA.className = "buttonlike active"
                };
                ele.style.display = "none";
@@ -132,10 +120,10 @@
 		 };
 	</script>
 </head>
-<body onload="init()">
+<body>
 	<div class="container">
         <center><img src="bingeez-logo.png" style="padding-top:30px"></center>
-		<div id="main-title" style="padding-bottom: 40px">$<span id="bingeez-earned">0.00</span></div>
+		<div id="main-title" style="padding-bottom: 40px">$1.11</div>
 		<div id="key-down"></div>
 
 		<div id="a" class="buttonlike active">HOME</div>
