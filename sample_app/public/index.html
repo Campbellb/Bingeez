@@ -3,20 +3,53 @@
 <head>
 	<title>Sample Hackathon App - Directv</title>
 	<style>
+	body{
+            
+	}
+
+		.active {
+			background-color: rgba(0, 0, 0, 0.3);
+            width: 375px;
+            height: 47px;
+		}
+        
 		.container {
-			background-color: black;
-			opacity: 0.5;
-			padding: 50px;
+			background-color: #77c8bd;
 			min-height: 350px;
+			float:left;
+			width:400px;
+            height: 1080px;
 		}
-		.main-title, #key-down {
-			color:white;
-			font-size:72px;
+		#main-title{
+			font-family: HelveticaLTStd;
+            color: black;
+            font-size: 90px; /* Approximation due to font substitution */
+            font-weight: 0;
+            line-height: 53.2px; /* Approximation due to font substitution */
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 50px:
 		}
+        
 		#money {
 			height:25px;
 			width:25px;
 		}
+        
+		.buttonlike{
+			font-family: HelveticaLTStd;
+            color: #ffffff;
+            font-size: 50px; /* Approximation due to font substitution */
+            font-weight: 700;
+            line-height: 53.2px; /* Approximation due to font substitution */
+            text-align: left;
+            padding-left: 25px;
+		}
+        .genre{
+            color: #ffffff;
+            padding-left: 35px;
+            font-size: 30px;
+        }
 	</style>
 	<script type="text/javascript">
 		//If we are a stb, set the resolution
@@ -26,48 +59,42 @@
 
 		function keyHandler(e){
 			var code = e.keyCode
-			var container = document.getElementById('key-down');
-
+			var eleA = document.getElementById("a")
+               		, eleB = document.getElementById("b")
+               		, eleC = document.getElementById("c");
 			//Don't for get to put a BREAK after every case OR it will
 			//Fall through like it does below.
 			switch(code){
-        case 13: document.getElementById('key-down').innerHTML = "Enter Key";
-        case 48 : // 0
-        case 49 : // 1
-        case 50 : // 2
-        case 51 : // 3
-        case 52 : // 4
-        case 53 : // 5
-        case 54 : // 6
-        case 55 : // 7
-        case 56 : // 8
-        case 57 : // 9
-        case 79 : // Info
-        case 87 : // Rewind Trick play
-        case 9 : // FF Trick play
-        case 65 : //Active
-        case 67 : // Next Trick play
-        case 72 : // red
-        case 74 : // green
-        case 75 : // yellow
-        case 76 : // blue
-        case 80: // Play Trick play
-        case 82 : // Record Trick play
-        case 83 : // Stop Trick play
-        case 85 : // Pause Trick play
-        case 46 : // Back Trick play
-        case 37: //left
-        case 33: //pageup channelUp
-        case 34: //pagedown channelDown
-        case 38: //up
-        case 39: //right
-        case 40: //down
-        case 47: //back
-        case 189 : //dash
+        case 13: if (eleA.className == "buttonlike active"){
+               		document.getElementById("main-title").innerHTML = "NOW PLAYING: Comedy";
+               }else if (eleB.className == "buttonlike active"){
+               		document.getElementById("main-title").innerHTML = "NOW PLAYING: Drama";
+               }else if (eleC.className == "buttonlike active"){
+               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Romance";
+               };
+        break;
         default :
-        	// container.innerHTML = code;
-        	break;
+               if (eleA.className == "buttonlike active"){
+               		eleA.className = "buttonlike"
+               		eleB.className = "buttonlike active"
+               		console.log(eleA.className);
+               		console.log(eleB.className);
+               }else if (eleB.className == "buttonlike active"){
+               		eleB.className = "buttonlike"
+               		eleC.className = "buttonlike active"
+               }else if (eleC.className == "buttonlike active"){
+               	  eleC.className = "buttonlike"
+               	  eleA.className = "buttonlike active"
+               };
+               ele.style.display = "none";
+        break;
       }
+
+
+       if (code == 39) {
+               var ele = document.getElementById("app1");
+               ele.style.display = "block";
+       }
 
 			// return false prevents keys from bubbling to UI
 			return false;
@@ -89,11 +116,21 @@
 </head>
 <body>
 	<div class="container">
-		<h2 style='color:white'>Sample Hackathon App - Keypresses - Directv</h2>
-		<img class="money" src="http://emojipedia-us.s3.amazonaws.com/cache/85/25/8525c9b814efc14c7e09df13cbdb27bc.png"><h4></h4>
-		<p style='color:white'>Press a key on your remote to find out its keyCode</p>
-		<h1 class="main-title">Key Pressed:</h1>
+        <center><img src="bingeez-logo.png" style="padding-top:30px"></center>
+		<div id="main-title" style="padding-bottom: 40px">$1.11</div>
 		<div id="key-down"></div>
+
+		<div id="a" class="buttonlike active">HOME</div>
+        <div class="genre">GENRE</div>
+		<div id="b" class="buttonlike">ACTION</div>
+		<div id="c" class="buttonlike">CHILDREN & FAMILY</div>
+        <div id="d" class="buttonlike">DOCUMENTARY</div>
+		<div id="e" class="buttonlike">DRAMA</div>
+		<div id="f" class="buttonlike">HORROR</div>
+        <div id="g" class="buttonlike">INDIE</div>
+		<div id="h" class="buttonlike">ROMANCE</div>
+		<div id="i" class="buttonlike">SCI-FI</div>
+
 	</div>
 	<script type="text/javascript" src="app.js"></script>
 </body>
