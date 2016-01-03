@@ -58,11 +58,22 @@
 		  navigator.setResolution(1920, 1080);
 		}
 
+		function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
 		function keyHandler(e){
 			var code = e.keyCode
 			var eleA = document.getElementById("a")
                		, eleB = document.getElementById("b")
-               		, eleC = document.getElementById("c")               		                , eleD = document.getElementById("d")
+               		, eleC = document.getElementById("c")
+					, eleD = document.getElementById("d")
                		, eleE = document.getElementById("e")
                		, eleF = document.getElementById("f")
                		, eleG = document.getElementById("g")
@@ -75,52 +86,65 @@
 			//Don't for get to put a BREAK after every case OR it will
 			//Fall through like it does below.
 			switch(code){
-        case 13: if (eleA.className == "buttonlike active"){
+        case 13:
+
+			var ff = function(channel, gr) {
+				startItUp("8b3003cb982819fffbaa417fcb99aa1f", channel);
+				startItBackUp("8b3003cb982819fffbaa417fcb99aa1f", channel);
+
+				createCookie("session", "8b3003cb982819fffbaa417fcb99aa1f", 700);
+				createCookie("channel", channel, 700);
+				//document.cookie="session=8b3003cb982819fffbaa417fcb99aa1f; expires=Thu, 18 Dec 2017 12:00:00 UTC; path=/";
+				//document.cookie="channel="+channel+"; expires=Thu, 18 Dec 2017 12:00:00 UTC; path=/";
+				setTimeout(function(){$.get(gr);}, 2000);
+
+			}
+			if (eleA.className == "buttonlike active"){
                }else if (eleB.className == "buttonlike active"){
                   var array = [223, 241, 242, 245, 254];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                }else if (eleC.className == "buttonlike active"){
                   var array = [259, 279, 289,290,291,292,293,299,300,301,302,303];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                 }else if (eleD.className == "buttonlike active"){
                   var array = [13, 248, 249];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                 }else if (eleE.className == "buttonlike active"){
                   var array = [31,58,202,276, 277]
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                 }else if (eleF.className == "buttonlike active"){
                   var array = [30, 204, 247, 252, 260];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                 }else if (eleG.className == "buttonlike active"){
                   var array = [256, 257, 258];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                 }else if (eleH.className == "buttonlike active"){
                   var array = [24];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                 }else if (eleI.className == "buttonlike active"){
                   var array = [253];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                 }else if (eleJ.className == "buttonlike active"){
                   var array = [20, 244,264];
                   var channel = array[Math.floor(Math.random()*array.length)];
                   var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  $.get(getRequest);
+                  ff(channel, getRequest);
                };
         break;
         default :
@@ -185,16 +209,16 @@
 		 };
 	</script>
 </head>
-<body onload="init()">
+<body>
 	<div class="container">
         <center><img src="bingeez-logo.png" style="padding-top:30px"></center>
-		<div id="main-title" style="padding-bottom: 40px">$<span id="bingeez-earned">0.00</span></div>
+		<div id="main-title" style="padding-bottom: 40px"><span id="bingeez-earned"></span></div>
 		<div id="key-down"></div>
 
 		<div id="a" class="buttonlike active">HOME</div>
         <div class="genre">GENRE</div>
 		<div id="b" class="buttonlike">ACTION</div>
-		<div id="c" class="buttonlike">CHILDREN & FAMILY</div>
+		<div id="c" class="buttonlike">CHILDREN &amp; FAMILY</div>
         <div id="d" class="buttonlike">COMEDY</div>
         <div id="e" class="buttonlike">DOCUMENTARY</div>
 		<div id="f" class="buttonlike">DRAMA</div>
