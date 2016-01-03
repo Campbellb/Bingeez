@@ -4,7 +4,7 @@
 	<title>Ticker - Directv</title>
 	<style>
 	body{
-            
+
 	}
 
 		.active {
@@ -12,7 +12,7 @@
             width: 375px;
             height: 47px;
 		}
-        
+
 		.container {
             background-color:  rgba(119, 200, 189, 0.8);
 			min-height: 350px;
@@ -29,12 +29,12 @@
             padding-top: 50px;
             padding-bottom: 50px:
 		}
-        
+
 		#money {
 			height:25px;
 			width:25px;
 		}
-        
+
 		.buttonlike{
 			font-family: HelveticaLTStd;
             color: #ffffff;
@@ -50,6 +50,8 @@
             font-size: 30px;
         }
 	</style>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="cap.js"></script>
 	<script type="text/javascript">
 		//If we are a stb, set the resolution
 		if (!!navigator.setResolution) {
@@ -147,10 +149,10 @@
 		 };
 	</script>
 </head>
-<body>
+<body onload="init()">
 	<div class="container">
         <center><img src="bingeez-logo.png" style="padding-top:30px"></center>
-		<div id="main-title" style="padding-bottom: 40px">$1.11</div>
+		<div id="main-title" style="padding-bottom: 40px">$<span id="bingeez-earned">0.00</span></div>
 		<div id="key-down"></div>
 
 		<div id="a" class="buttonlike active">HOME</div>
