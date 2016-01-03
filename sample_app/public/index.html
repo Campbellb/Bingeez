@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sample Hackathon App - Directv</title>
+	<title>Ticker - Directv</title>
 	<style>
 	body{
             
@@ -66,21 +66,23 @@
                		, eleG = document.getElementById("g")
                     , eleH = document.getElementById("h")
                		, eleI = document.getElementById("i")
+                    , eleI = document.getElementById("j")
+
 
 ;
 			//Don't for get to put a BREAK after every case OR it will
 			//Fall through like it does below.
 			switch(code){
         case 13: if (eleA.className == "buttonlike active"){
-               		document.getElementById("main-title").innerHTML = "NOW PLAYING: Comedy";
                }else if (eleB.className == "buttonlike active"){
-               		document.getElementById("main-title").innerHTML = "NOW PLAYING: Drama";
                }else if (eleC.className == "buttonlike active"){
-               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Romance";
                 }else if (eleD.className == "buttonlike active"){
-               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Documentary";   
                 }else if (eleE.className == "buttonlike active"){
-               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Documentary";   
+                }else if (eleF.className == "buttonlike active"){
+                }else if (eleG.className == "buttonlike active"){
+                }else if (eleH.className == "buttonlike active"){
+                }else if (eleI.className == "buttonlike active"){
+                }else if (eleJ.className == "buttonlike active"){
                };
         break;
         default :
@@ -100,6 +102,21 @@
                	  eleE.className = "buttonlike active"
                }else if (eleE.className == "buttonlike active"){
                	  eleE.className = "buttonlike"
+               	  eleF.className = "buttonlike active"
+               }else if (eleF.className == "buttonlike active"){
+               	  eleF.className = "buttonlike"
+               	  eleG.className = "buttonlike active"
+               }else if (eleG.className == "buttonlike active"){
+               	  eleG.className = "buttonlike"
+               	  eleH.className = "buttonlike active"
+               }else if (eleH.className == "buttonlike active"){
+               	  eleH.className = "buttonlike"
+               	  eleI.className = "buttonlike active"
+               }else if (eleI.className == "buttonlike active"){
+               	  eleI.className = "buttonlike"
+               	  eleJ.className = "buttonlike active"
+               }else if (eleJ.className == "buttonlike active"){
+               	  eleJ.className = "buttonlike"
                	  eleA.className = "buttonlike active"
                };
                ele.style.display = "none";
@@ -140,12 +157,13 @@
         <div class="genre">GENRE</div>
 		<div id="b" class="buttonlike">ACTION</div>
 		<div id="c" class="buttonlike">CHILDREN & FAMILY</div>
-        <div id="d" class="buttonlike">DOCUMENTARY</div>
-		<div id="e" class="buttonlike">DRAMA</div>
-		<div id="f" class="buttonlike">HORROR</div>
-        <div id="g" class="buttonlike">INDIE</div>
-		<div id="h" class="buttonlike">ROMANCE</div>
-		<div id="i" class="buttonlike">SCI-FI</div>
+        <div id="d" class="buttonlike">COMEDY</div>
+        <div id="e" class="buttonlike">DOCUMENTARY</div>
+		<div id="f" class="buttonlike">DRAMA</div>
+		<div id="g" class="buttonlike">HORROR</div>
+        <div id="h" class="buttonlike">INDIE</div>
+		<div id="i" class="buttonlike">ROMANCE</div>
+		<div id="j" class="buttonlike">SCI-FI</div>
 
 	</div>
 	<script type="text/javascript" src="app.js"></script>
