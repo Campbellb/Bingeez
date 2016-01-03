@@ -76,23 +76,58 @@
 			//Fall through like it does below.
 			switch(code){
         case 13: if (eleA.className == "buttonlike active"){
-               }else if (eleB.className == "buttonlike active"){
-               }else if (eleC.className == "buttonlike active"){
-                }else if (eleD.className == "buttonlike active"){
-                }else if (eleE.className == "buttonlike active"){
-                }else if (eleF.className == "buttonlike active"){
-                }else if (eleG.className == "buttonlike active"){
-                }else if (eleH.className == "buttonlike active"){
-                }else if (eleI.className == "buttonlike active"){
-                }else if (eleJ.className == "buttonlike active"){
+
+               }else if (eleB.className == "buttonlike active"){ //action
+                  var arrayb = [223, 241, 242, 245, 254]
+                  var channelb = arrayb[Math.floor(Math.random()*arrayb.length)];
+                  var getRequestb = "http://10.9.107.16:8080/tv/tune?major=" + channelb;
+                  $.get(getRequestb);
+               }else if (eleC.className == "buttonlike active"){ //children
+                  var arrayc = [259, 279, 289,290,291,292,293,299,300,301,302,303];
+                  var channelc = arrayc[Math.floor(Math.random()*arrayc.length)];
+                  var getRequestc = "http://10.9.107.16:8080/tv/tune?major=" + channelc;
+                  $.get(getRequestc);
+                }else if (eleD.className == "buttonlike active"){ //comedy
+                  var arrayd = [13, 248, 249];
+                  var channeld = arrayd[Math.floor(Math.random()*arrayd.length)];
+                  var getRequestd = "http://10.9.107.16:8080/tv/tune?major=" + channeld;
+                  $.get(getRequestd);
+                }else if (eleE.className == "buttonlike active"){ //documentary
+                  var arraye = [31,58, 202, 276, 277];
+                  var channele = arraye[Math.floor(Math.random()*arraye.length)];
+                  var getRequeste = "http://10.9.107.16:8080/tv/tune?major=" + channele;
+                  $.get(getRequeste);
+                }else if (eleF.className == "buttonlike active"){ //drama
+                  var arrayf = [30, 204, 247, 252, 260];
+                  var channelf = arrayf[Math.floor(Math.random()*arrayf.length)];
+                  var getRequestf = "http://10.9.107.16:8080/tv/tune?major=" + channelf;
+                  $.get(getRequestf);
+                }else if (eleG.className == "buttonlike active"){ //horror
+                  var arrayg = [256, 257, 258];
+                  var channelg = arrayg[Math.floor(Math.random()*arrayg.length)];
+                  var getRequestg = "http://10.9.107.16:8080/tv/tune?major=" + channelg;
+                  $.get(getRequestg);
+                }else if (eleH.className == "buttonlike active"){ //indie
+                  var arrayh = [24];
+                  var channelh = arrayh[Math.floor(Math.random()*arrayh.length)];
+                  var getRequesth = "http://10.9.107.16:8080/tv/tune?major=" + channelh;
+                  $.get(getRequesth);
+                }else if (eleI.className == "buttonlike active"){ //romance
+                  var arrayi = [253];
+                  var channeli = arrayi[Math.floor(Math.random()*arrayi.length)];
+                  var getRequesti = "http://10.9.107.16:8080/tv/tune?major=" + channeli;
+                  $.get(getRequesti);
+                }else if (eleJ.className == "buttonlike active"){ //scifi
+                  var arrayj = [20, 244,264];
+                  var channelj = arrayj[Math.floor(Math.random()*arrayj.length)];
+                  var getRequestj = "http://10.9.107.16:8080/tv/tune?major=" + channelj;
+                  $.get(getRequestj);
                };
         break;
         default :
                if (eleA.className == "buttonlike active"){
                		eleA.className = "buttonlike"
                		eleB.className = "buttonlike active"
-               		console.log(eleA.className);
-               		console.log(eleB.className);
                }else if (eleB.className == "buttonlike active"){
                		eleB.className = "buttonlike"
                		eleC.className = "buttonlike active"
@@ -168,6 +203,8 @@
 		<div id="j" class="buttonlike">SCI-FI</div>
 
 	</div>
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
