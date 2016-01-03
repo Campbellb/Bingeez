@@ -77,10 +77,6 @@
                		document.getElementById("main-title").innerHTML = "NOW PLAYING: Drama";
                }else if (eleC.className == "buttonlike active"){
                	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Romance";
-                }else if (eleD.className == "buttonlike active"){
-               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Documentary";   
-                }else if (eleE.className == "buttonlike active"){
-               	  document.getElementById("main-title").innerHTML = "NOW PLAYING: Documentary";   
                };
         break;
         default :
@@ -94,12 +90,6 @@
                		eleC.className = "buttonlike active"
                }else if (eleC.className == "buttonlike active"){
                	  eleC.className = "buttonlike"
-               	  eleD.className = "buttonlike active"
-               }else if (eleD.className == "buttonlike active"){
-               	  eleD.className = "buttonlike"
-               	  eleE.className = "buttonlike active"
-               }else if (eleE.className == "buttonlike active"){
-               	  eleE.className = "buttonlike"
                	  eleA.className = "buttonlike active"
                };
                ele.style.display = "none";
