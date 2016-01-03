@@ -3,240 +3,229 @@
 <head>
 	<title>Ticker - Directv</title>
 	<style>
-	body{
-
+	.active {
+		background-color: rgba(0, 0, 0, 0.3);
+          width: 375px;
+          height: 47px;
 	}
-
-		.active {
-			background-color: rgba(0, 0, 0, 0.3);
-            width: 375px;
-            height: 47px;
-		}
-
-		.container {
-            background-color:  rgba(119, 200, 189, 0.8);
-			min-height: 350px;
-			float:left;
-			width:400px;
-            height: 1080px;
-		}
-		#main-title{
-			font-family: HelveticaLTStd;
-            color: black;
-            font-size: 90px; /* Approximation due to font substitution */
-            line-height: 53.2px; /* Approximation due to font substitution */
-            text-align: center;
-            padding-top: 50px;
-            padding-bottom: 50px:
-		}
-
-		#money {
-			height:25px;
-			width:25px;
-		}
-
-		.buttonlike{
-			font-family: HelveticaLTStd;
-            color: #ffffff;
-            font-size: 50px; /* Approximation due to font substitution */
-            font-weight: 700;
-            line-height: 53.2px; /* Approximation due to font substitution */
-            text-align: left;
-            padding-left: 25px;
-		}
-        .genre{
-            color: #ffffff;
-            padding-left: 25px;
-            font-size: 30px;
-        }
+	.container {
+          background-color:  rgba(119, 200, 189, 0.8);
+		min-height: 350px;
+		float:left;
+		width:400px;
+          height: 1080px;
+	}
+	#main-title{
+		font-family: HelveticaLTStd;
+          color: black;
+          font-size: 90px; /* Approximation due to font substitution */
+          line-height: 53.2px; /* Approximation due to font substitution */
+          text-align: center;
+          padding-top: 50px;
+          padding-bottom: 50px:
+	}
+	#money {
+		height:25px;
+		width:25px;
+	}
+	.buttonlike{
+		font-family: HelveticaLTStd;
+          color: #ffffff;
+          font-size: 50px; /* Approximation due to font substitution */
+          font-weight: 700;
+          line-height: 53.2px; /* Approximation due to font substitution */
+          text-align: left;
+          padding-left: 25px;
+	}
+  .genre{
+          color: #ffffff;
+          padding-left: 25px;
+          font-size: 30px;
+      }
 	</style>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="cap.js"></script>
-	<script type="text/javascript">
-		//If we are a stb, set the resolution
-		if (!!navigator.setResolution) {
-		  navigator.setResolution(1920, 1080);
-		}
+</head>
 
-		function createCookie(name,value,days) {
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime()+(days*24*60*60*1000));
-        var expires = "; expires="+date.toGMTString();
-    }
-    else var expires = "";
-    document.cookie = name+"="+value+expires+"; path=/";
+
+<body>
+<div class="container">
+  <center><img src="bingeez-logo.png" style="padding-top:30px"></center>
+  <div id="main-title" style="padding-bottom: 40px"><span id="bingeez-earned"></span></div>
+  <div id="a" class="buttonlike active">HOME</div>
+  <div class="genre">GENRE</div>
+  <div id="b" class="buttonlike">ACTION</div>
+  <div id="c" class="buttonlike">CHILDREN &amp; FAMILY</div>
+  <div id="d" class="buttonlike">COMEDY</div>
+  <div id="e" class="buttonlike">DOCUMENTARY</div>
+  <div id="f" class="buttonlike">DRAMA</div>
+  <div id="g" class="buttonlike">HORROR</div>
+  <div id="h" class="buttonlike">INDIE</div>
+  <div id="i" class="buttonlike">ROMANCE</div>
+  <div id="j" class="buttonlike">SCI-FI</div>
+  <div id="k" class="buttonlike">EDUCATION</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="cap.js"></script>
+<script type="text/javascript">
+  //If we are a stb, set the resolution
+  if (!!navigator.setResolution) {
+    navigator.setResolution(1920, 1080);
+  }
+
+  function createCookie(name,value,days) {
+  if (days) {
+      var date = new Date();
+      date.setTime(date.getTime()+(days*24*60*60*1000));
+      var expires = "; expires="+date.toGMTString();
+  }
+  else var expires = "";
+  document.cookie = name+"="+value+expires+"; path=/";
 }
 
-		function keyHandler(e){
-			var code = e.keyCode
-			var eleA = document.getElementById("a")
-               		, eleB = document.getElementById("b")
-               		, eleC = document.getElementById("c")
-					, eleD = document.getElementById("d")
-               		, eleE = document.getElementById("e")
-               		, eleF = document.getElementById("f")
-               		, eleG = document.getElementById("g")
-                    , eleH = document.getElementById("h")
-               		, eleI = document.getElementById("i")
-                    , eleI = document.getElementById("j")
-                  , eleK = document.getElementById("k");
-			//Don't for get to put a BREAK after every case OR it will
-			//Fall through like it does below.
-			switch(code){
-        case 13:
+  function keyHandler(e){
+    var code = e.keyCode
+    var eleA = document.getElementById("a")
+    , eleB = document.getElementById("b")
+    , eleC = document.getElementById("c")
+    , eleD = document.getElementById("d")
+    , eleE = document.getElementById("e")
+    , eleF = document.getElementById("f")
+    , eleG = document.getElementById("g")
+    , eleH = document.getElementById("h")
+    , eleI = document.getElementById("i")
+    , eleJ = document.getElementById("j")
+    , eleK = document.getElementById("k");
+    //Don't for get to put a BREAK after every case OR it will
+    //Fall through like it does below.
+   
+    switch(code){
+      case 13:
+      var ff = function(channel, gr) {
+        startItUp("8b3003cb982819fffbaa417fcb99aa1f", channel);
+        startItBackUp("8b3003cb982819fffbaa417fcb99aa1f", channel);
 
-			var ff = function(channel, gr) {
-				startItUp("8b3003cb982819fffbaa417fcb99aa1f", channel);
-				startItBackUp("8b3003cb982819fffbaa417fcb99aa1f", channel);
-
-				createCookie("session", "8b3003cb982819fffbaa417fcb99aa1f", 700);
-				createCookie("channel", channel, 700);
-				//document.cookie="session=8b3003cb982819fffbaa417fcb99aa1f; expires=Thu, 18 Dec 2017 12:00:00 UTC; path=/";
-				//document.cookie="channel="+channel+"; expires=Thu, 18 Dec 2017 12:00:00 UTC; path=/";
-				setTimeout(function(){$.get(gr);}, 2000);
-
-			}
-			if (eleA.className == "buttonlike active"){
-               }else if (eleB.className == "buttonlike active"){
-                  var array = [223, 241, 242, 245, 254];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-               }else if (eleC.className == "buttonlike active"){
-                  var array = [259, 279, 289,290,291,292,293,299,300,301,302,303];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-                }else if (eleD.className == "buttonlike active"){
-                  var array = [13, 248, 249];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-                }else if (eleE.className == "buttonlike active"){
-                  var array = [31,58,202,276, 277]
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-                }else if (eleF.className == "buttonlike active"){
-                  var array = [30, 204, 247, 252, 260];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-                }else if (eleG.className == "buttonlike active"){
-                  var array = [256, 257, 258];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-                }else if (eleH.className == "buttonlike active"){
-                  var array = [24];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-                }else if (eleI.className == "buttonlike active"){
-                  var array = [253];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-                }else if (eleJ.className == "buttonlike active"){
-                  var array = [20, 244,264];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-               }else if (eleK.className == "buttonlike active"){
-                  var array = [277, 278,282, 283,284];
-                  var channel = array[Math.floor(Math.random()*array.length)];
-                  var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
-                  ff(channel, getRequest);
-               };
+        createCookie("session", "8b3003cb982819fffbaa417fcb99aa1f", 700);
+        createCookie("channel", channel, 700);
+        //document.cookie="session=8b3003cb982819fffbaa417fcb99aa1f; expires=Thu, 18 Dec 2017 12:00:00 UTC; path=/";
+        //document.cookie="channel="+channel+"; expires=Thu, 18 Dec 2017 12:00:00 UTC; path=/";
+        setTimeout(function(){$.get(gr);}, 2000);
+      }
+      if (eleA.className == "buttonlike active"){
+       }else if (eleB.className == "buttonlike active"){
+          var array = [223, 241, 242, 245, 254];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+       }else if (eleC.className == "buttonlike active"){
+          var array = [259, 279, 289,290,291,292,293,299,300,301,302,303];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+        }else if (eleD.className == "buttonlike active"){
+          var array = [13, 248, 249];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+        }else if (eleE.className == "buttonlike active"){
+          var array = [31,58,202,276, 277]
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+        }else if (eleF.className == "buttonlike active"){
+          var array = [30, 204, 247, 252, 260];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+        }else if (eleG.className == "buttonlike active"){
+          var array = [256, 257, 258];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+        }else if (eleH.className == "buttonlike active"){
+          var array = [24];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+        }else if (eleI.className == "buttonlike active"){
+          var array = [253];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+        }else if (eleJ.className == "buttonlike active"){
+          var array = [20, 244,264];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+       }else if (eleK.className == "buttonlike active"){
+          var array = [277, 278,282, 283,284];
+          var channel = array[Math.floor(Math.random()*array.length)];
+          var getRequest = "http://10.9.107.16:8080/tv/tune?major=" + channel;
+          ff(channel, getRequest);
+       };
         break;
         default :
                if (eleA.className == "buttonlike active"){
-               		eleA.className = "buttonlike"
-               		eleB.className = "buttonlike active"
-               		console.log(eleA.className);
-               		console.log(eleB.className);
+                  eleA.className = "buttonlike"
+                  eleB.className = "buttonlike active"
                }else if (eleB.className == "buttonlike active"){
-               		eleB.className = "buttonlike"
-               		eleC.className = "buttonlike active"
+                  eleB.className = "buttonlike"
+                  eleC.className = "buttonlike active"
                }else if (eleC.className == "buttonlike active"){
-               	  eleC.className = "buttonlike"
-               	  eleD.className = "buttonlike active"
+                  eleC.className = "buttonlike"
+                  eleD.className = "buttonlike active"
                }else if (eleD.className == "buttonlike active"){
-               	  eleD.className = "buttonlike"
-               	  eleE.className = "buttonlike active"
+                  eleD.className = "buttonlike"
+                  eleE.className = "buttonlike active"
                }else if (eleE.className == "buttonlike active"){
-               	  eleE.className = "buttonlike"
-               	  eleF.className = "buttonlike active"
+                  eleE.className = "buttonlike"
+                  eleF.className = "buttonlike active"
                }else if (eleF.className == "buttonlike active"){
-               	  eleF.className = "buttonlike"
-               	  eleG.className = "buttonlike active"
+                  eleF.className = "buttonlike"
+                  eleG.className = "buttonlike active"
                }else if (eleG.className == "buttonlike active"){
-               	  eleG.className = "buttonlike"
-               	  eleH.className = "buttonlike active"
+                  eleG.className = "buttonlike"
+                  eleH.className = "buttonlike active"
                }else if (eleH.className == "buttonlike active"){
-               	  eleH.className = "buttonlike"
-               	  eleI.className = "buttonlike active"
+                  eleH.className = "buttonlike"
+                  eleI.className = "buttonlike active"
                }else if (eleI.className == "buttonlike active"){
-               	  eleI.className = "buttonlike"
-               	  eleJ.className = "buttonlike active"
+                  eleI.className = "buttonlike"
+                  eleJ.className = "buttonlike active"
                }else if (eleJ.className == "buttonlike active"){
                   eleJ.className = "buttonlike"
                   eleK.className = "buttonlike active"
+                  console.log(eleJ.className)
                }else if (eleK.className == "buttonlike active"){
-               	  eleK.className = "buttonlike"
-               	  eleA.className = "buttonlike active"
-               };
+                  console.log(eleK.className)
+                  eleK.className = "buttonlike"
+                  eleA.className = "buttonlike active"
+                  console.log(eleK.className)
+               }
                ele.style.display = "none";
         break;
       }
 
-
        if (code == 39) {
-               var ele = document.getElementById("app1");
-               ele.style.display = "block";
+         var ele = document.getElementById("app1");
+         ele.style.display = "block";
        }
+      // return false prevents keys from bubbling to UI
+      return false;
+    }
+  window.onkeydown = keyHandler;
 
-			// return false prevents keys from bubbling to UI
-			return false;
-	  }
+window.onerror = function(errorMsg, url, lineNumber){
+ // If Webkit throws an error on the STB - the app crashes.
+ // To prevent the propagation and therefore the crash
+ // return true
 
-		window.onkeydown = keyHandler;
-
-		window.onerror = function(errorMsg, url, lineNumber){
-		   // If Webkit throws an error on the STB - the app crashes.
-		   // To prevent the propagation and therefore the crash
-		   // return true
-
-		   // Look for this console.log message in the logs
-		   // To access the logs use http://{STB_IP}/itv/getLogs
-		   console.log(errorMsg);
-		   return true;
-		 };
-	</script>
-</head>
-<body>
-	<div class="container">
-        <center><img src="bingeez-logo.png" style="padding-top:30px"></center>
-		<div id="main-title" style="padding-bottom: 40px"><span id="bingeez-earned"></span></div>
-		<div id="key-down"></div>
-
-		<div id="a" class="buttonlike active">HOME</div>
-        <div class="genre">GENRE</div>
-		<div id="b" class="buttonlike">ACTION</div>
-		<div id="c" class="buttonlike">CHILDREN &amp; FAMILY</div>
-        <div id="d" class="buttonlike">COMEDY</div>
-        <div id="e" class="buttonlike">DOCUMENTARY</div>
-		<div id="f" class="buttonlike">DRAMA</div>
-		<div id="g" class="buttonlike">HORROR</div>
-        <div id="h" class="buttonlike">INDIE</div>
-		<div id="i" class="buttonlike">ROMANCE</div>
-    <div id="j" class="buttonlike">SCI-FI</div>
-		<div id="k" class="buttonlike">EDUCATION</div>
-
-	</div>
-  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+ // Look for this console.log message in the logs
+ // To access the logs use http://{STB_IP}/itv/getLogs
+ console.log(errorMsg);
+ return true;
+};
+</script>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
