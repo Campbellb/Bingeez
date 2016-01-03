@@ -90,7 +90,7 @@ io.on('connection', function(socket) {
           dd = {amount: 0, session: data["session"], show: data["show"], tstmp: serverTimestamp, active: 1}
           if (!!!rows[0] || "session" in rows[0] && rows[0].session == "") {
               dd["amount"] = 0.01;
-              var query = connection.query('INSERT INTO `sessionData` SET `session` = ?, `show` = ?, `timestamp` = ?, `amount` = 00.01, `active` = 1 ', [data["session"], data["show"], serverTimestamp], function(err, result) {
+              var query = connection.query('INSERT INTO `sessionData` SET `session` = ?, `show` = ?, `timestamp` = ?, `amount` = 0.01, `active` = 1 ', [data["session"], data["show"], serverTimestamp], function(err, result) {
                   winston.log(result.insertId);
                   winston.log('info', "Inserted new data into the database");
               });
@@ -109,21 +109,23 @@ io.on('connection', function(socket) {
               if (ts < serverTimestamp) {
                    winston.log('info', "bump");
                   dd["amount"] = (Math.round(dd["amount"] * 100) / 100) + 0.01;
+              } else {
+                  dd["amount"] = (Math.round(dd["amount"] * 100) / 100);
               }
           }
 
-        //   var device_id = "6d13e32ab8025c06412a32fb91ae9e99";
-        //   m2x.devices.setStreamValue(device_id, data["show"], {value:dd["amount"]}, function(response, responses){
-        //       var m = JSON.parse(response["raw"])
-        //       winston.log('info', m["message"]);
-        //       if (m["message"] == "Stream Not Found") {
-        //           m2x.devices.updateStream(device_id, data["show"], {value: dd["amount"]}, function(response, responses){
-        //                 winston.log('info', "created a new stream...");
-        //                 m2x.devices.setStreamValue(device_id, data["show"], {value:dd["amount"]}, function(response, responses){});
-          //
-        //            });
-        //     }
-        //   });
+         var device_id = "6d13e32ab8025c06412a32fb91ae9e99";
+         m2x.devices.setStreamValue(device_id, "channel21", {value:dd["amount"]}, function(response, responses){
+             var m = JSON.parse(response["raw"])
+             winston.log('info', m["message"]);
+             if (m["message"] == "Stream Not Found") {
+                 m2x.devices.updateStream(device_id, data["show"], {value: dd["amount"]}, function(response, responses){
+                       winston.log('info', "created a new stream...");
+                       m2x.devices.setStreamValue(device_id, data["show"], {value:dd["amount"]}, function(response, responses){});
+
+                  });
+           }
+         });
 
           var query = connection.query('UPDATE `sessionData` SET `amount` = ?, `timestamp` = ? WHERE `session` = ? AND `show` = ?', [dd["amount"], dd["tstmp"], dd["session"], dd["show"]], function(err, result) {
               if (err) {
